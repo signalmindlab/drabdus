@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website Under Development">
+    <title>Under Development - drabdus.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background gradient */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-5%, 5%) rotate(120deg); }
+            66% { transform: translate(5%, -5%) rotate(240deg); }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 6s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 8s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 3s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 5s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 7s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 9s; }
+
+        .container {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 700px;
+            width: 100%;
+            padding: 60px 50px;
+            text-align: center;
+            animation: slideUp 0.8s ease-out;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Decorative corner elements */
+        .corner-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .corner-decoration.top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 12px 0 0 0;
+        }
+
+        .corner-decoration.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 12px 0;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 35px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 10px 40px rgba(59, 130, 246, 0.5); }
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #fbbf24;
+            border-radius: 50%;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .description {
+            color: #e2e8f0;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-size: 17px;
+            font-weight: 300;
+        }
+
+        .description strong {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .link-section {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .link-section p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            font-size: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover svg {
+            transform: translateX(3px);
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* Loading animation */
+        .loader-container {
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .loader-bar {
+            width: 4px;
+            height: 40px;
+            background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+            border-radius: 4px;
+            animation: wave 1.2s ease-in-out infinite;
+        }
+
+        .loader-bar:nth-child(1) { animation-delay: 0s; }
+        .loader-bar:nth-child(2) { animation-delay: 0.1s; }
+        .loader-bar:nth-child(3) { animation-delay: 0.2s; }
+        .loader-bar:nth-child(4) { animation-delay: 0.3s; }
+        .loader-bar:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes wave {
+            0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+
+            .corner-decoration {
+                width: 40px;
+                height: 40px;
+            }
+
+            .corner-decoration.top-left {
+                top: 15px;
+                left: 15px;
+            }
+
+            .corner-decoration.bottom-right {
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="container">
+        <!-- Corner decorations -->
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+
+        <div class="status-badge">
+            <div class="status-dot"></div>
+            Under Development
+        </div>
+        
+        <div class="loader-container">
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+        </div>
+        
+        <p class="description">
+            Thank you for visiting <strong>drabdus.com</strong>. We're currently crafting something exceptional! 
+            This platform will feature cutting-edge research insights, technical articles, and professional 
+            resources in wireless communication and AI applications.
+        </p>
+        
+        <div class="link-section">
+            <p>In the meantime, explore my academic profile:</p>
+            <a href="https://www.drabdus.info/home" class="btn" target="_blank">
+                Visit drabdus.info
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>Expected Launch: Coming Soon</p>
+            <p>&copy; 2025 Dr. Abdus Samad. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
